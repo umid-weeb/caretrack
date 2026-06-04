@@ -20,6 +20,7 @@ app.use('/api/diagnoses',     require('./src/routes/diagnosisRoutes'));
 app.use('/api/appointments',  require('./src/routes/appointmentRoutes'));
 app.use('/api/notifications', require('./src/routes/notificationRoutes'));
 app.use('/api/reports',       require('./src/routes/reportRoutes'));
+app.use('/api/users',         require('./src/routes/userRoutes'));
 
 // SPA: all non-API routes serve index.html
 app.get('*', (req, res) => {

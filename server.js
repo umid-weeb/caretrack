@@ -6,15 +6,21 @@ const { sequelize } = require('./src/models');
 const PORT = process.env.PORT || 3001;
 
 async function start() {
+  console.log('🔌 DB ulanish tekshirilmoqda...');
   await sequelize.authenticate();
-  // alter:{drop:false} yangi ustunlar qo'shadi lekin mavjud jadvallarni o'chmiradi
+  console.log('✅ DB ulanish muvaffaqiyatli');
+
+  console.log('🧱 Jadvallar tekshirilmoqda...');
   await sequelize.sync({ alter: { drop: false } });
+  console.log('✅ Jadvallar sinxronizatsiya qilindi');
 
   // Seed if empty
   const { User } = require('./src/models');
   const count = await User.count();
   if (count === 0) {
+    console.log('🌱 Initial seed bajarilmoqda...');
     await require('./src/config/seed')();
+    console.log('✅ Seed tugadi');
   }
 
   const server = app.listen(PORT, () => {
