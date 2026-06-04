@@ -28,7 +28,10 @@ const API = {
       credentials: 'same-origin',
     };
     if (body !== undefined) opts.body = JSON.stringify(body);
-    const res = await fetch(url, opts);
+    // Allow an optional global API base URL (set by hosting env or inline script)
+    const base = (typeof window !== 'undefined' && window.API_BASE_URL) ? window.API_BASE_URL.replace(/\/$/, '') : '';
+    const fullUrl = base + url;
+    const res = await fetch(fullUrl, opts);
     const data = res.headers.get('content-type')?.includes('json') ? await res.json() : {};
     if (!res.ok) throw new Error(data.error || `HTTP ${res.status}`);
     return data;
