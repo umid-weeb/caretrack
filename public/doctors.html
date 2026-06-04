@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="uz">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width,initial-scale=1"/>
+  <title>CareTrack CRM – Shifokorlar</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet"/>
+  <link rel="stylesheet" href="/css/style.css"/>
+</head>
+<body>
+<div id="ct-sidebar-overlay" class="ct-sidebar-overlay"></div>
+<div class="ct-shell">
+  <aside class="ct-sidebar" id="ct-sidebar"></aside>
+  <div class="ct-main" id="ct-main">
+    <header class="ct-topbar" id="ct-topbar"></header>
+    <main class="ct-page" id="ct-page">
+      <div class="ct-loading-overlay"><div class="ct-spinner"></div> Yuklanmoqda…</div>
+    </main>
+  </div>
+</div>
+
+<!-- Doctor Drawer (no popup!) -->
+<div class="ct-drawer-overlay" id="docDrawer-overlay"></div>
+<div class="ct-drawer" id="docDrawer">
+  <div class="ct-drawer-header">
+    <h2 class="ct-drawer-title" id="docDrawerTitle">Shifokor qo'shish</h2>
+    <button class="ct-drawer-close" onclick="closeDrawer('docDrawer')">✕</button>
+  </div>
+  <div class="ct-drawer-body">
+    <div id="docDrawerAlert"></div>
+    <input type="hidden" id="docId"/>
+    <div class="ct-form-row">
+      <div class="ct-form-group">
+        <label class="ct-label">To'liq ism <span class="required">*</span></label>
+        <input type="text" class="ct-input" id="docName" placeholder="Dr. Alisher Nazarov" required/>
+      </div>
+      <div class="ct-form-group">
+        <label class="ct-label">Mutaxassislik <span class="required">*</span></label>
+        <input type="text" class="ct-input" id="docSpecialty" placeholder="Kardiolog"/>
+      </div>
+    </div>
+    <div class="ct-form-row">
+      <div class="ct-form-group">
+        <label class="ct-label">Bo'lim <span class="required">*</span></label>
+        <input type="text" class="ct-input" id="docDept" placeholder="Kardiologiya"/>
+      </div>
+      <div class="ct-form-group">
+        <label class="ct-label">Holat</label>
+        <select class="ct-select" id="docStatus">
+          <option value="Available">Available – Ishda</option>
+          <option value="Off-duty">Off-duty – Ish kuni emas</option>
+          <option value="On-leave">On-leave – Ta'tilda</option>
+        </select>
+      </div>
+    </div>
+    <div class="ct-form-row">
+      <div class="ct-form-group">
+        <label class="ct-label">Telefon <span class="required">*</span></label>
+        <input type="tel" class="ct-input" id="docPhone" placeholder="+998 90 000 00 00"/>
+      </div>
+      <div class="ct-form-group">
+        <label class="ct-label">Email <span class="required">*</span></label>
+        <input type="email" class="ct-input" id="docEmail" placeholder="dr@caretrack.uz"/>
+      </div>
+    </div>
+    <div class="ct-form-group">
+      <label class="ct-label">Favqulodda aloqa raqami</label>
+      <input type="tel" class="ct-input" id="docEmergency" placeholder="+998 90 ..."/>
+      <div class="ct-form-hint">Ish vaqtidan tashqari bog'lanish uchun</div>
+    </div>
+    <div id="docCredentialsHint" class="ct-alert ct-alert-info" style="display:none;margin-top:12px">
+      ℹ️ Yangi shifokor uchun login hisobi avtomatik yaratiladi. Parol: email nomi (@ dan oldingi qism)
+    </div>
+  </div>
+  <div class="ct-drawer-footer">
+    <button class="ct-btn ct-btn-outline" onclick="closeDrawer('docDrawer')">Bekor qilish</button>
+    <button class="ct-btn ct-btn-primary" id="saveDocBtn">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="width:14px;height:14px"><path d="M19 21H5a2 2 0 01-2-2V5a2 2 0 012-2h11l5 5v11a2 2 0 01-2 2z"/><polyline points="17 21 17 13 7 13 7 21"/><polyline points="7 3 7 8 15 8"/></svg>
+      Saqlash
+    </button>
+  </div>
+</div>
+
+<div id="ct-toasts" class="ct-toast-wrap"></div>
+<script src="/js/api.js"></script>
+<script src="/js/auth.js"></script>
+<script src="/js/layout.js"></script>
+<script src="/js/doctors.js"></script>
+</body>
+</html>

@@ -1,0 +1,732 @@
+<!DOCTYPE html>
+<html lang="uz">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width,initial-scale=1"/>
+  <meta name="description" content="CareTrack Clinic – Toshkentning ishonchli tibbiy markazi. Ixtisoslashgan shifokorlar, zamonaviy diagnostika va onlayn qabulga yozilish."/>
+  <title>CareTrack Clinic – Sog'liqni saqlash yangi darajada</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet"/>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css"/>
+  <link rel="stylesheet" href="css/clinic.css"/>
+</head>
+<body>
+
+<!-- ══════ HEADER ══════ -->
+<header class="w-header hero-transparent" id="w-header">
+  <div class="w-container w-header-inner">
+    <a href="#home" class="w-logo">
+      <div class="w-logo-icon">🏥</div>
+      <span class="w-logo-text">CareTrack<span>Clinic</span></span>
+    </a>
+
+    <nav>
+      <ul class="w-nav" id="w-nav">
+        <li><a href="#home">Bosh sahifa</a></li>
+        <li><a href="#about">Biz haqimizda</a></li>
+        <li><a href="#services">Xizmatlar</a></li>
+        <li><a href="#doctors">Shifokorlar</a></li>
+        <li><a href="#hours">Ish vaqti</a></li>
+        <li><a href="#contact">Aloqa</a></li>
+      </ul>
+    </nav>
+
+    <div class="w-header-cta">
+      <a href="/login.html" class="w-nav-login">
+        <i class="fas fa-sign-in-alt" style="margin-right:5px"></i>Kirish
+      </a>
+      <button class="w-btn w-btn-primary" onclick="openBooking()">
+        <i class="fas fa-calendar-plus"></i> Qabulga yozilish
+      </button>
+    </div>
+
+    <button class="w-hamburger" id="w-hamburger" aria-label="Menyu" onclick="toggleMobileNav()">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</header>
+
+<!-- Mobile nav -->
+<div class="w-mobile-nav" id="w-mobile-nav">
+  <ul>
+    <li><a href="#home"     onclick="closeMobileNav()">Bosh sahifa</a></li>
+    <li><a href="#about"    onclick="closeMobileNav()">Biz haqimizda</a></li>
+    <li><a href="#services" onclick="closeMobileNav()">Xizmatlar</a></li>
+    <li><a href="#doctors"  onclick="closeMobileNav()">Shifokorlar</a></li>
+    <li><a href="#hours"    onclick="closeMobileNav()">Ish vaqti</a></li>
+    <li><a href="#contact"  onclick="closeMobileNav()">Aloqa</a></li>
+  </ul>
+  <button class="w-btn w-btn-primary w-btn-lg" onclick="openBooking();closeMobileNav()">
+    <i class="fas fa-calendar-plus"></i> Qabulga yozilish
+  </button>
+</div>
+
+<!-- ══════ HERO ══════ -->
+<section class="w-hero" id="home">
+  <!-- Decorative elements -->
+  <div class="w-hero-deco w-hero-deco-1"></div>
+  <div class="w-hero-deco w-hero-deco-2"></div>
+  <div class="w-hero-deco w-hero-deco-3"></div>
+
+  <div class="w-container">
+    <div class="w-hero-inner">
+      <div class="w-hero-content">
+        <!-- Pill tag -->
+        <div class="w-hero-tag w-reveal">
+          <span class="w-hero-tag-dot"></span>
+          Toshkentning ishonchli tibbiy markazi
+        </div>
+
+        <!-- Headline -->
+        <h1 class="w-hero-title w-reveal">
+          Sog'ligingiz —<br/>
+          bizning <span class="w-accent">asosiy</span><br/>
+          ustuvorligimiz
+        </h1>
+
+        <!-- Description -->
+        <p class="w-hero-desc w-reveal">
+          CareTrack Clinic — malakali shifokorlar, zamonaviy diagnostika va
+          qulay onlayn qabulga yozilish tizimi bilan sog'liqni saqlash
+          xizmatlarini yangi darajaga olib chiqmoqda.
+        </p>
+
+        <!-- CTA buttons -->
+        <div class="w-hero-actions w-reveal">
+          <button class="w-btn w-btn-white w-btn-lg" onclick="openBooking()">
+            <i class="fas fa-calendar-plus"></i> Qabulga yozilish
+          </button>
+          <a href="#services" class="w-btn w-btn-outline-white w-btn-lg">
+            <i class="fas fa-list-ul"></i> Xizmatlar
+          </a>
+        </div>
+
+        <!-- Quick stats -->
+        <div class="w-hero-stats w-reveal">
+          <div>
+            <div class="w-hero-stat-val" id="stat-doctors">10+</div>
+            <div class="w-hero-stat-label">Mutaxassis shifokor</div>
+          </div>
+          <div>
+            <div class="w-hero-stat-val">500+</div>
+            <div class="w-hero-stat-label">Xizmat ko'rsatilgan bemor</div>
+          </div>
+          <div>
+            <div class="w-hero-stat-val">6+</div>
+            <div class="w-hero-stat-label">Tibbiy bo'limlar</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Floating card -->
+      <div class="w-hero-card w-reveal">
+        <div class="w-hero-card-title">
+          <i class="fas fa-stethoscope" style="color:var(--w-violet)"></i>
+          Shifokor tanlang
+        </div>
+        <div id="hero-doctors-mini">
+          <div class="w-doc-mini">
+            <div class="w-doc-mini-av">JY</div>
+            <div><div class="w-doc-mini-name">Jasur Yusupov</div><div class="w-doc-mini-spec">Kardiolog</div></div>
+            <div class="w-doc-mini-status"></div>
+          </div>
+          <div class="w-doc-mini">
+            <div class="w-doc-mini-av">MK</div>
+            <div><div class="w-doc-mini-name">Malika Karimova</div><div class="w-doc-mini-spec">Nevropatolog</div></div>
+            <div class="w-doc-mini-status"></div>
+          </div>
+          <div class="w-doc-mini">
+            <div class="w-doc-mini-av">AR</div>
+            <div><div class="w-doc-mini-name">Akmal Rashidov</div><div class="w-doc-mini-spec">Umumiy Amaliyot</div></div>
+            <div class="w-doc-mini-status"></div>
+          </div>
+        </div>
+        <button class="w-btn w-btn-primary w-hero-card-cta" onclick="openBooking()">
+          <i class="fas fa-calendar-plus"></i> Qabul yozish
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Floating badges -->
+  <div class="w-hero-badge top-left w-reveal" style="display:none">
+    <div class="w-hero-badge-icon">✅</div>
+    <div>
+      <div style="font-weight:700">Sertifikatlangan</div>
+      <div class="w-hero-badge-sub">Xalqaro standart</div>
+    </div>
+  </div>
+  <div class="w-hero-badge bottom-right w-reveal" style="display:none">
+    <div class="w-hero-badge-icon">⚡</div>
+    <div>
+      <div style="font-weight:700">Onlayn qabul</div>
+      <div class="w-hero-badge-sub">Bugun ham mumkin</div>
+    </div>
+  </div>
+
+  <!-- Scroll indicator -->
+  <div class="w-scroll-indicator">scroll</div>
+</section>
+
+<!-- ══════ STATS BANNER ══════ -->
+<div class="w-stats-banner">
+  <div class="w-container">
+    <div class="w-stats-grid">
+      <div class="w-stats-item w-reveal">
+        <div class="w-stats-val" id="stat1">10+</div>
+        <div class="w-stats-label">Mutaxassis shifokorlar</div>
+      </div>
+      <div class="w-stats-item w-reveal">
+        <div class="w-stats-val">6+</div>
+        <div class="w-stats-label">Tibbiy bo'limlar</div>
+      </div>
+      <div class="w-stats-item w-reveal">
+        <div class="w-stats-val">500+</div>
+        <div class="w-stats-label">Xizmat ko'rsatilgan bemorlar</div>
+      </div>
+      <div class="w-stats-item w-reveal">
+        <div class="w-stats-val">24/7</div>
+        <div class="w-stats-label">Shoshilinch aloqa</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ══════ ABOUT ══════ -->
+<section class="w-section" id="about">
+  <div class="w-container">
+    <div class="w-about-grid">
+      <!-- Left: visual -->
+      <div class="w-about-visual w-reveal">
+        <div class="w-about-stat-grid">
+          <div class="w-about-stat">
+            <div class="w-about-stat-val">2018</div>
+            <div class="w-about-stat-label">Tashkil etilgan yil</div>
+          </div>
+          <div class="w-about-stat">
+            <div class="w-about-stat-val">98%</div>
+            <div class="w-about-stat-label">Bemor qoniqishi</div>
+          </div>
+          <div class="w-about-stat">
+            <div class="w-about-stat-val">ISO</div>
+            <div class="w-about-stat-label">Sertifikatlangan</div>
+          </div>
+          <div class="w-about-stat">
+            <div class="w-about-stat-val">5★</div>
+            <div class="w-about-stat-label">O'rtacha reyting</div>
+          </div>
+        </div>
+        <div class="w-about-quote">
+          <div class="w-about-quote-text">
+            "CareTrack Clinic — shifokorlar va bemorlar o'rtasidagi munosabatlarni
+            insoniy va professional darajada ushlab turadi. Har bir bemor bizga muhim."
+          </div>
+          <div class="w-about-quote-author">
+            <div class="w-about-quote-av">BX</div>
+            <div>
+              <div class="w-about-quote-name">Dr. Bobur Xolmatov</div>
+              <div class="w-about-quote-title">Bosh shifokor, CareTrack Clinic</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Right: text -->
+      <div class="w-reveal">
+        <div class="w-tag"><i class="fas fa-hospital"></i> Biz haqimizda</div>
+        <h2 class="w-heading" style="margin-bottom:16px">
+          Sog'liqni saqlashda <span style="color:var(--w-violet)">yangi standart</span>
+        </h2>
+        <p style="color:var(--w-gray-500);font-size:16px;margin-bottom:28px">
+          CareTrack Clinic 2018 yildan beri Toshkentda faoliyat yuritib kelmoqda.
+          Biz kardiologiya, nevrologiya, dermatologiya, ortopediya va boshqa
+          yo'nalishlarda yuqori malakali mutaxassislar jamoasini birlashtiramiz.
+        </p>
+        <div class="w-features">
+          <div class="w-feature">
+            <div class="w-feature-icon purple"><i class="fas fa-user-md" style="color:#fff"></i></div>
+            <div>
+              <div class="w-feature-title">Malakali mutaxassislar</div>
+              <div class="w-feature-desc">Har bir shifokor xalqaro sertifikat va 10+ yillik tajribaga ega</div>
+            </div>
+          </div>
+          <div class="w-feature">
+            <div class="w-feature-icon teal"><i class="fas fa-microscope" style="color:var(--w-teal)"></i></div>
+            <div>
+              <div class="w-feature-title">Zamonaviy diagnostika</div>
+              <div class="w-feature-desc">So'nggi avlod tibbiy uskunalar bilan aniq tashxis qo'yish</div>
+            </div>
+          </div>
+          <div class="w-feature">
+            <div class="w-feature-icon green"><i class="fas fa-calendar-check" style="color:var(--w-green)"></i></div>
+            <div>
+              <div class="w-feature-title">Onlayn qabulga yozilish</div>
+              <div class="w-feature-desc">Uydan turib, qulay vaqtda shifokorga yozilish imkoniyati</div>
+            </div>
+          </div>
+        </div>
+        <button class="w-btn w-btn-primary" style="margin-top:28px" onclick="openBooking()">
+          <i class="fas fa-calendar-alt"></i> Hozir qabul yozish
+        </button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════ SERVICES ══════ -->
+<section class="w-section-alt" id="services">
+  <div class="w-container">
+    <div class="w-section-header w-reveal">
+      <div class="w-tag"><i class="fas fa-stethoscope"></i> Xizmatlarimiz</div>
+      <h2 class="w-heading">Bizning tibbiy xizmatlar</h2>
+      <p class="w-section-desc">
+        CareTrack Clinic keng qamrovli tibbiy xizmatlarni taklif etadi —
+        umumiy muolajadan tortib, ixtisoslashgan amaliyotgacha
+      </p>
+    </div>
+    <div class="w-services-grid">
+      <div class="w-service-card w-reveal">
+        <div class="w-service-icon purple"><i class="fas fa-heartbeat" style="color:#fff"></i></div>
+        <div class="w-service-title">Umumiy Amaliyot</div>
+        <div class="w-service-desc">Profilaktik ko'riklar, kasalliklar tashxisi, yo'llanma berish va sog'liq monitoringi</div>
+        <a href="#" class="w-service-link" onclick="openBooking();return false">Qabul yozish <i class="fas fa-arrow-right" style="font-size:11px"></i></a>
+      </div>
+      <div class="w-service-card w-reveal">
+        <div class="w-service-icon teal"><i class="fas fa-brain" style="color:var(--w-teal)"></i></div>
+        <div class="w-service-title">Mutaxassis Qabullar</div>
+        <div class="w-service-desc">Kardiologiya, nevrologiya, dermatologiya, ortopediya va boshqa yo'nalishlarda ixtisoslashgan yordam</div>
+        <a href="#" class="w-service-link" onclick="openBooking();return false">Qabul yozish <i class="fas fa-arrow-right" style="font-size:11px"></i></a>
+      </div>
+      <div class="w-service-card w-reveal">
+        <div class="w-service-icon green"><i class="fas fa-flask" style="color:var(--w-green)"></i></div>
+        <div class="w-service-title">Diagnostika</div>
+        <div class="w-service-desc">Laboratoriya tahlillari, EKG, ultratovush, rentgen va boshqa zamonaviy tekshiruvlar</div>
+        <a href="#" class="w-service-link" onclick="openBooking();return false">Buyurtma berish <i class="fas fa-arrow-right" style="font-size:11px"></i></a>
+      </div>
+      <div class="w-service-card w-reveal">
+        <div class="w-service-icon amber"><i class="fas fa-file-medical" style="color:var(--w-amber)"></i></div>
+        <div class="w-service-title">Yo'llanma Boshqaruvi</div>
+        <div class="w-service-desc">Boshqa ixtisoslik shifokorlariga ko'rsatma berish, yo'llanma rasmiylashtirish va kuzatib borish</div>
+        <a href="#" class="w-service-link" onclick="openBooking();return false">Batafsil <i class="fas fa-arrow-right" style="font-size:11px"></i></a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════ DOCTORS ══════ -->
+<section class="w-section" id="doctors">
+  <div class="w-container">
+    <div class="w-section-header w-reveal">
+      <div class="w-tag"><i class="fas fa-user-md"></i> Jamoamiz</div>
+      <h2 class="w-heading">Bizning shifokorlar</h2>
+      <p class="w-section-desc">
+        Har biri o'z sohasining eksperti — tajribali va g'amxo'r mutaxassislar jamoasi
+      </p>
+    </div>
+    <div class="w-doctors-grid" id="doctors-grid">
+      <div class="w-doctor-card w-reveal" style="text-align:center;padding:32px">
+        <div style="color:var(--w-gray-300);font-size:13px">Yuklanmoqda…</div>
+      </div>
+    </div>
+    <div style="text-align:center;margin-top:36px" class="w-reveal">
+      <button class="w-btn w-btn-primary w-btn-lg" onclick="openBooking()">
+        <i class="fas fa-calendar-plus"></i> Qabulga yozilish
+      </button>
+    </div>
+  </div>
+</section>
+
+<!-- ══════ WORKING HOURS ══════ -->
+<section class="w-hours-section" id="hours">
+  <div class="w-container">
+    <div class="w-hours-grid">
+      <!-- Left: text -->
+      <div class="w-hours-left w-reveal">
+        <div class="w-tag"><i class="fas fa-clock"></i> Ish vaqti</div>
+        <h2 class="w-hours-title">Biz siz uchun<br/>har kuni tayyormiz</h2>
+        <p class="w-hours-subtitle">
+          Dushanba dan Shanbagacha – zamonaviy tibbiy xizmatlar va
+          muammosiz qabulga yozilish tizimi bilan xizmatingizdamiz.
+        </p>
+        <div class="w-hours-emergency" style="margin-top:32px">
+          <div class="w-hours-emerg-icon">🚨</div>
+          <div>
+            <div class="w-hours-emerg-label">Shoshilinch aloqa</div>
+            <div class="w-hours-emerg-val">+998 (90) 100-20-30</div>
+          </div>
+        </div>
+        <button class="w-btn w-btn-white w-btn-lg" style="margin-top:24px" onclick="openBooking()">
+          <i class="fas fa-calendar-plus"></i> Qabul yozish
+        </button>
+      </div>
+
+      <!-- Right: hours table -->
+      <div class="w-reveal">
+        <div class="w-hours-table">
+          <div class="w-hours-row">
+            <div class="w-hours-day">
+              <span class="w-hours-day-dot open"></span>
+              Dushanba – Juma
+            </div>
+            <div style="display:flex;align-items:center;gap:10px">
+              <span class="w-hours-time">08:00 – 20:00</span>
+              <span class="w-hours-badge"><i class="fas fa-circle" style="font-size:7px"></i> Ochiq</span>
+            </div>
+          </div>
+          <div class="w-hours-row">
+            <div class="w-hours-day">
+              <span class="w-hours-day-dot open"></span>
+              Shanba
+            </div>
+            <div style="display:flex;align-items:center;gap:10px">
+              <span class="w-hours-time">09:00 – 17:00</span>
+              <span class="w-hours-badge"><i class="fas fa-circle" style="font-size:7px"></i> Ochiq</span>
+            </div>
+          </div>
+          <div class="w-hours-row">
+            <div class="w-hours-day">
+              <span class="w-hours-day-dot closed"></span>
+              Yakshanba
+            </div>
+            <span class="w-hours-time closed">Dam olish kuni</span>
+          </div>
+          <div class="w-hours-row">
+            <div class="w-hours-day">
+              <span class="w-hours-day-dot closed"></span>
+              Tushlik tanaffusi
+            </div>
+            <span class="w-hours-time closed">12:00 – 13:00</span>
+          </div>
+          <div class="w-hours-row" style="background:rgba(255,255,255,.04)">
+            <div class="w-hours-day" style="font-size:13px;color:rgba(255,255,255,.5)">
+              <i class="fas fa-info-circle" style="color:rgba(255,255,255,.3)"></i>
+              Qabul oldin bron qilinishi tavsiya etiladi
+            </div>
+            <button class="w-btn w-btn-primary w-btn-sm" onclick="openBooking()">Bron qilish</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════ CTA SECTION ══════ -->
+<div class="w-cta-section">
+  <div class="w-container w-reveal">
+    <div class="w-cta-inner">
+      <div>
+        <h2 class="w-cta-title">Sog'ligingizni bugun boshlang</h2>
+        <p class="w-cta-desc">Hoziroq onlayn qabul yozing — kutib o'tirmasdan, qulay vaqtda</p>
+      </div>
+      <button class="w-btn w-btn-primary w-btn-lg" onclick="openBooking()">
+        <i class="fas fa-calendar-plus"></i> Qabulga yozilish
+      </button>
+    </div>
+  </div>
+</div>
+
+<!-- ══════ CONTACT ══════ -->
+<section class="w-section-alt" id="contact">
+  <div class="w-container">
+    <div class="w-section-header w-reveal">
+      <div class="w-tag"><i class="fas fa-map-marker-alt"></i> Manzil va Aloqa</div>
+      <h2 class="w-heading">Bizni toping</h2>
+    </div>
+    <div class="w-contact-grid">
+      <div class="w-reveal">
+        <div class="w-contact-item">
+          <div class="w-contact-icon"><i class="fas fa-map-marker-alt"></i></div>
+          <div>
+            <div class="w-contact-label">Manzil</div>
+            <div class="w-contact-value">Toshkent sh., Amir Temur ko'chasi, 108-uy</div>
+            <div class="w-contact-sub">Metro: Amir Temur Xiyoboni (200 metr)</div>
+          </div>
+        </div>
+        <div class="w-contact-item">
+          <div class="w-contact-icon"><i class="fas fa-phone"></i></div>
+          <div>
+            <div class="w-contact-label">Telefon</div>
+            <div class="w-contact-value">+998 (71) 200-10-10</div>
+            <div class="w-contact-sub">+998 (90) 100-20-30 (Shoshilinch)</div>
+          </div>
+        </div>
+        <div class="w-contact-item">
+          <div class="w-contact-icon"><i class="fas fa-envelope"></i></div>
+          <div>
+            <div class="w-contact-label">Email</div>
+            <div class="w-contact-value">info@caretrack.uz</div>
+            <div class="w-contact-sub">appointments@caretrack.uz (Qabul)</div>
+          </div>
+        </div>
+        <button class="w-btn w-btn-primary" style="margin-top:8px" onclick="openBooking()">
+          <i class="fas fa-calendar-plus"></i> Qabulga yozilish
+        </button>
+      </div>
+      <div class="w-reveal">
+        <div class="w-map-wrap">
+          <iframe
+            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2996.0!2d69.2802!3d41.2995!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zNDHCsDE3JzU3LjciTiA2OcKwMTYnNDguOCJF!5e0!3m2!1suz!2suz!4v1000000000000!5m2!1suz!2suz"
+            width="100%" height="320"
+            style="border:0;display:block"
+            allowfullscreen=""
+            loading="lazy"
+            referrerpolicy="no-referrer-when-downgrade"
+            title="CareTrack Clinic manzili">
+          </iframe>
+          <div class="w-map-footer">
+            <div style="font-size:13.5px;font-weight:700;color:var(--w-gray-800);margin-bottom:3px">
+              <i class="fas fa-map-marker-alt" style="color:var(--w-purple);margin-right:6px"></i>
+              CareTrack Clinic
+            </div>
+            <div style="font-size:13px;color:var(--w-gray-500)">
+              Amir Temur ko'chasi, 108 ·
+              <a href="#" style="color:var(--w-purple);font-weight:600">Yo'l ko'rsatmalari</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════ FOOTER ══════ -->
+<footer class="w-footer">
+  <div class="w-container">
+    <div class="w-footer-grid">
+      <div>
+        <div class="w-footer-logo">
+          <div class="w-footer-logo-icon">🏥</div>
+          <span class="w-footer-logo-text">CareTrack<span>Clinic</span></span>
+        </div>
+        <p class="w-footer-desc">
+          Sog'ligingizni saqlashda ishonchli hamkoringiz.
+          Professional tibbiy xizmatlar, zamonaviy diagnostika, g'amxo'r shifokorlar.
+        </p>
+        <div class="w-footer-social">
+          <a href="#" title="Telegram"><i class="fab fa-telegram"></i></a>
+          <a href="#" title="Instagram"><i class="fab fa-instagram"></i></a>
+          <a href="#" title="Facebook"><i class="fab fa-facebook"></i></a>
+          <a href="#" title="YouTube"><i class="fab fa-youtube"></i></a>
+        </div>
+      </div>
+      <div class="w-footer-col">
+        <h5>Sahifalar</h5>
+        <ul>
+          <li><a href="#home">Bosh sahifa</a></li>
+          <li><a href="#about">Biz haqimizda</a></li>
+          <li><a href="#services">Xizmatlar</a></li>
+          <li><a href="#doctors">Shifokorlar</a></li>
+          <li><a href="#hours">Ish vaqti</a></li>
+          <li><a href="#contact">Aloqa</a></li>
+        </ul>
+      </div>
+      <div class="w-footer-col">
+        <h5>Xizmatlar</h5>
+        <ul>
+          <li><a href="#services">Umumiy amaliyot</a></li>
+          <li><a href="#services">Kardiologiya</a></li>
+          <li><a href="#services">Nevrologiya</a></li>
+          <li><a href="#services">Diagnostika</a></li>
+          <li><a href="#services">Yo'llanma</a></li>
+        </ul>
+      </div>
+      <div class="w-footer-col">
+        <h5>Bog'lanish</h5>
+        <ul>
+          <li><a href="tel:+998712001010"><i class="fas fa-phone" style="width:14px;margin-right:6px"></i>+998 71 200-10-10</a></li>
+          <li><a href="mailto:info@caretrack.uz"><i class="fas fa-envelope" style="width:14px;margin-right:6px"></i>info@caretrack.uz</a></li>
+          <li><a href="#contact"><i class="fas fa-map-marker-alt" style="width:14px;margin-right:6px"></i>Amir Temur k., 108</a></li>
+        </ul>
+        <div style="margin-top:16px">
+          <button class="w-btn w-btn-primary w-btn-sm" onclick="openBooking()" style="width:100%;justify-content:center">
+            <i class="fas fa-calendar-plus"></i> Qabul yozish
+          </button>
+        </div>
+      </div>
+    </div>
+    <div class="w-footer-bottom">
+      <div class="w-footer-copy">© 2024–2026 CareTrack Clinic. Barcha huquqlar himoyalangan.</div>
+      <div class="w-footer-links">
+        <a href="#">Maxfiylik siyosati</a>
+        <a href="#">Foydalanish shartlari</a>
+        <a href="/login.html">Xodimlar uchun kirish</a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<!-- ══════ BOOKING PANEL ══════ -->
+<div class="w-booking-overlay" id="w-booking-overlay" onclick="closeBooking()"></div>
+
+<div class="w-booking-panel" id="w-booking-panel" role="dialog" aria-label="Qabul yozish">
+  <div class="w-booking-header">
+    <div>
+      <div class="w-booking-title">📅 Qabulga yozilish</div>
+      <div class="w-booking-subtitle" id="booking-subtitle">Shifokor, sana va vaqtni tanlang</div>
+    </div>
+    <button class="w-booking-close" onclick="closeBooking()" aria-label="Yopish">
+      <i class="fas fa-times"></i>
+    </button>
+  </div>
+
+  <!-- Stepper -->
+  <div class="w-stepper" id="w-stepper">
+    <div class="w-step active" id="step-ind-1"><div class="w-step-num">1</div><div class="w-step-label">Shifokor</div></div>
+    <div class="w-step"        id="step-ind-2"><div class="w-step-num">2</div><div class="w-step-label">Sana</div></div>
+    <div class="w-step"        id="step-ind-3"><div class="w-step-num">3</div><div class="w-step-label">Vaqt</div></div>
+    <div class="w-step"        id="step-ind-4"><div class="w-step-num">4</div><div class="w-step-label">Tasdiqlash</div></div>
+  </div>
+
+  <div class="w-booking-body">
+    <!-- Step 1: Doctor -->
+    <div class="w-step-content active" id="step-1">
+      <div style="margin-bottom:16px">
+        <div style="font-size:15px;font-weight:700;color:var(--w-gray-800);margin-bottom:4px">Shifokorni tanlang</div>
+        <div style="font-size:13px;color:var(--w-gray-500)">Mutaxassislik yoki ism bo'yicha izlang</div>
+      </div>
+      <div class="w-form-group w-doc-search">
+        <div style="position:relative">
+          <i class="fas fa-search" style="position:absolute;left:12px;top:50%;transform:translateY(-50%);color:var(--w-gray-400);font-size:13px"></i>
+          <input type="text" class="w-form-input" id="doc-search" placeholder="Ism yoki mutaxassislik…" oninput="filterDocList(this.value)" style="padding-left:38px"/>
+        </div>
+      </div>
+      <div class="w-form-group">
+        <select class="w-form-select" id="doc-filter-spec" onchange="filterDocList()">
+          <option value="">Barcha mutaxassisliklar</option>
+        </select>
+      </div>
+      <div class="w-doc-list" id="doc-list">
+        <div style="text-align:center;padding:32px;color:var(--w-gray-400)">Yuklanmoqda…</div>
+      </div>
+    </div>
+
+    <!-- Step 2: Date -->
+    <div class="w-step-content" id="step-2">
+      <div style="margin-bottom:16px">
+        <div style="font-size:15px;font-weight:700;color:var(--w-gray-800);margin-bottom:4px">Sanani tanlang</div>
+        <div style="font-size:13px;color:var(--w-gray-500)">Dushanba – Shanba, bugundan boshlab</div>
+      </div>
+      <div class="w-calendar">
+        <div class="w-calendar-header">
+          <button class="w-calendar-nav" id="cal-prev" onclick="changeMonth(-1)">‹</button>
+          <div class="w-calendar-month" id="cal-month"></div>
+          <button class="w-calendar-nav" id="cal-next" onclick="changeMonth(1)">›</button>
+        </div>
+        <div class="w-calendar-grid" id="cal-grid"></div>
+      </div>
+    </div>
+
+    <!-- Step 3: Time -->
+    <div class="w-step-content" id="step-3">
+      <div style="margin-bottom:12px">
+        <div style="font-size:15px;font-weight:700;color:var(--w-gray-800);margin-bottom:4px">Vaqt tanlang</div>
+        <div style="font-size:13px;color:var(--w-gray-500)" id="slots-date-label"></div>
+      </div>
+      <div class="w-slots-legend">
+        <div class="w-legend-item"><div class="w-legend-dot free"></div> Bo'sh</div>
+        <div class="w-legend-item"><div class="w-legend-dot booked"></div> Band</div>
+        <div class="w-legend-item"><div class="w-legend-dot lunch"></div> Tushlik</div>
+        <div class="w-legend-item"><div class="w-legend-dot sel"></div> Tanlangan</div>
+      </div>
+      <div id="slots-container">
+        <div style="text-align:center;padding:32px;color:var(--w-gray-400)">Yuklanmoqda…</div>
+      </div>
+    </div>
+
+    <!-- Step 4: Confirmation -->
+    <div class="w-step-content" id="step-4">
+      <div style="margin-bottom:16px">
+        <div style="font-size:15px;font-weight:700;color:var(--w-gray-800);margin-bottom:4px">Ma'lumotlaringizni kiriting</div>
+      </div>
+      <div class="w-confirm-summary" id="confirm-summary"></div>
+      <div id="booking-alert"></div>
+      <div class="w-form-row">
+        <div class="w-form-group">
+          <label class="w-form-label">Ismingiz <span class="req">*</span></label>
+          <input type="text" class="w-form-input" id="b-name" placeholder="Alisher Nazarov" required/>
+        </div>
+        <div class="w-form-group">
+          <label class="w-form-label">Telefon <span class="req">*</span></label>
+          <input type="tel" class="w-form-input" id="b-phone" placeholder="+998 90 000 00 00" required/>
+        </div>
+      </div>
+      <div class="w-form-group">
+        <label class="w-form-label">Email</label>
+        <input type="email" class="w-form-input" id="b-email" placeholder="email@mail.uz"/>
+        <div class="w-form-hint">Tasdiqlash xabari shu emailga yuboriladi</div>
+      </div>
+      <div class="w-form-group">
+        <label class="w-form-label">Murojaat sababi (ixtiyoriy)</label>
+        <textarea class="w-form-input w-form-textarea" id="b-notes" placeholder="Qisqacha muammo yoki savol…"></textarea>
+      </div>
+      <div class="w-auth-notice">
+        <i class="fas fa-info-circle" style="color:var(--w-purple);margin-right:6px"></i>
+        Sayt tizimiga kirmasdan ham qabul yozish mumkin.
+        <a href="/login.html" style="color:var(--w-purple);font-weight:700">Kirish</a> orqali barcha ma'lumotlaringiz saqlanadi.
+      </div>
+    </div>
+
+    <!-- Step 5: Success -->
+    <div class="w-step-content" id="step-success">
+      <div class="w-success-screen">
+        <div class="w-success-icon">✅</div>
+        <div class="w-success-title">Qabul muvaffaqiyatli yozildi!</div>
+        <div class="w-success-desc" id="success-msg">Shifokor va vaqt tanlangan, qabulingiz tasdiqlandi.</div>
+        <div id="success-details" style="text-align:left;background:var(--w-gray-50);border-radius:12px;padding:18px;margin:16px 0;font-size:13.5px;border:1px solid var(--w-gray-200)"></div>
+        <button class="w-btn w-btn-primary w-btn-lg" style="width:100%;justify-content:center;margin-bottom:10px;border-radius:12px" onclick="closeBooking()">
+          <i class="fas fa-check"></i> Yaxshi, tushundim
+        </button>
+        <button class="w-btn" style="width:100%;justify-content:center;background:var(--w-gray-100);color:var(--w-gray-700);border-radius:12px" onclick="resetBooking()">
+          <i class="fas fa-plus"></i> Yana bir qabul yozish
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <div class="w-booking-footer" id="booking-footer">
+    <button class="w-btn w-btn-back" id="btn-back" onclick="prevStep()" style="display:none">
+      <i class="fas fa-arrow-left"></i> Orqaga
+    </button>
+    <button class="w-btn w-btn-primary" id="btn-next" onclick="nextStep()" style="flex:1;justify-content:center;border-radius:50px">
+      Davom etish <i class="fas fa-arrow-right"></i>
+    </button>
+  </div>
+</div>
+
+<!-- Toasts -->
+<div class="w-toasts" id="w-toasts"></div>
+
+<script src="js/clinic.js"></script>
+<script>
+  // Header transparency toggle on scroll
+  const header = document.getElementById('w-header');
+  window.addEventListener('scroll', () => {
+    if (window.scrollY > 60) {
+      header.classList.add('scrolled');
+      header.classList.remove('hero-transparent');
+    } else {
+      header.classList.remove('scrolled');
+      header.classList.add('hero-transparent');
+    }
+  }, { passive: true });
+
+  // Active nav link on scroll
+  const sections = document.querySelectorAll('section[id], div[id="home"]');
+  const navLinks = document.querySelectorAll('.w-nav a[href^="#"]');
+  window.addEventListener('scroll', () => {
+    let current = '';
+    sections.forEach(sec => {
+      if (window.scrollY >= sec.offsetTop - 100) current = sec.id;
+    });
+    navLinks.forEach(a => {
+      a.classList.toggle('active', a.getAttribute('href') === '#' + current);
+    });
+  }, { passive: true });
+
+  // Scroll reveal
+  const revealObserver = new IntersectionObserver((entries) => {
+    entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); } });
+  }, { threshold: 0.1 });
+  document.querySelectorAll('.w-reveal').forEach(el => revealObserver.observe(el));
+</script>
+</body>
+</html>

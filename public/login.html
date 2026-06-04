@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="uz">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width,initial-scale=1"/>
+  <title>CareTrack CRM – Kirish</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet"/>
+  <link rel="stylesheet" href="/css/style.css"/>
+  <style>
+    .ct-input { display: block; }
+    .ct-btn-full { width: 100%; justify-content: center; padding: 10px 16px; font-size: 14px; }
+    .ct-auth-divider { text-align: center; color: var(--ct-gray-400); font-size: 12px; margin: 16px 0; position: relative; }
+    .ct-auth-divider::before, .ct-auth-divider::after {
+      content: ''; position: absolute; top: 50%; width: calc(50% - 40px);
+      height: 1px; background: var(--ct-gray-200);
+    }
+    .ct-auth-divider::before { left: 0; } .ct-auth-divider::after { right: 0; }
+    .ct-link { color: var(--ct-primary); font-weight: 500; }
+    .ct-link:hover { color: var(--ct-primary-dark); }
+    .ct-password-wrap { position: relative; }
+    .ct-password-toggle {
+      position: absolute; right: 10px; top: 50%; transform: translateY(-50%);
+      cursor: pointer; color: var(--ct-gray-400); font-size: 16px; line-height: 1;
+      border: none; background: none; padding: 2px;
+    }
+    .ct-password-wrap .ct-input { padding-right: 36px; }
+  </style>
+</head>
+<body>
+<div class="ct-auth-bg">
+  <div class="ct-auth-card">
+    <div class="ct-auth-header">
+      <div class="ct-auth-logo">🏥</div>
+      <h1 class="ct-auth-title">CareTrack CRM</h1>
+      <p class="ct-auth-subtitle">Tibbiy yozuvlarni boshqarish tizimi</p>
+    </div>
+    <div class="ct-auth-body">
+      <div id="alertBox"></div>
+      <form id="loginForm" autocomplete="on">
+        <div class="ct-form-group">
+          <label class="ct-label" for="username">Foydalanuvchi nomi</label>
+          <input type="text" class="ct-input" id="username" name="username"
+                 placeholder="admin" autocomplete="username" required/>
+        </div>
+        <div class="ct-form-group">
+          <label class="ct-label" for="password">Parol</label>
+          <div class="ct-password-wrap">
+            <input type="password" class="ct-input" id="password" name="password"
+                   placeholder="••••••" autocomplete="current-password" required/>
+            <button type="button" class="ct-password-toggle" id="pwToggle" title="Ko'rish">👁</button>
+          </div>
+        </div>
+        <button type="submit" class="ct-btn ct-btn-primary ct-btn-full" id="loginBtn">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M15 3h4a2 2 0 012 2v14a2 2 0 01-2 2h-4"/><polyline points="10 17 15 12 10 7"/><line x1="15" y1="12" x2="3" y2="12"/></svg>
+          Kirish
+        </button>
+      </form>
+      <div class="ct-auth-divider">yoki</div>
+      <p style="text-align:center;font-size:13px;color:var(--ct-gray-500)">
+        Hisobingiz yo'qmi? <a href="/register.html" class="ct-link">Ro'yxatdan o'ting</a>
+      </p>
+      <div class="ct-auth-demo">
+        <strong>Demo hisoblar:</strong>
+        <div><b>Admin:</b> admin / admin123</div>
+        <div><b>Klinitsist:</b> j.yusupov@caretrack.uz / j.yusupov</div>
+        <div><b>Qabulxona:</b> receptionist / reception123</div>
+        <div><b>Bemor:</b> bemor1 / bemor123</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script src="/js/api.js"></script>
+<script src="/js/auth.js"></script>
+<script src="/js/auth-forms.js"></script>
+<script>
+  document.getElementById('pwToggle').addEventListener('click', function() {
+    const inp = document.getElementById('password');
+    inp.type = inp.type === 'password' ? 'text' : 'password';
+    this.textContent = inp.type === 'password' ? '👁' : '🙈';
+  });
+</script>
+</body>
+</html>

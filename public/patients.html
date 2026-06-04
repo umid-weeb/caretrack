@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="uz">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width,initial-scale=1"/>
+  <title>CareTrack CRM – Bemorlar</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet"/>
+  <link rel="stylesheet" href="/css/style.css"/>
+</head>
+<body>
+<div id="ct-sidebar-overlay" class="ct-sidebar-overlay"></div>
+<div class="ct-shell">
+  <aside class="ct-sidebar" id="ct-sidebar"></aside>
+  <div class="ct-main" id="ct-main">
+    <header class="ct-topbar" id="ct-topbar"></header>
+    <main class="ct-page" id="ct-page">
+      <div class="ct-loading-overlay"><div class="ct-spinner"></div> Yuklanmoqda…</div>
+    </main>
+  </div>
+</div>
+
+<!-- Patient Form Drawer -->
+<div class="ct-drawer-overlay" id="patDrawer-overlay"></div>
+<div class="ct-drawer" id="patDrawer">
+  <div class="ct-drawer-header">
+    <h2 class="ct-drawer-title" id="patDrawerTitle">Bemor qo'shish</h2>
+    <button class="ct-drawer-close" onclick="closeDrawer('patDrawer')">✕</button>
+  </div>
+  <div class="ct-drawer-body">
+    <div id="patDrawerAlert"></div>
+    <input type="hidden" id="patId"/>
+    <div class="ct-form-group">
+      <label class="ct-label">To'liq ism <span class="required">*</span></label>
+      <input type="text" class="ct-input" id="patName" placeholder="Alisher Nazarov" required/>
+    </div>
+    <div class="ct-form-row">
+      <div class="ct-form-group">
+        <label class="ct-label">Tug'ilgan sana <span class="required">*</span></label>
+        <input type="date" class="ct-input" id="patDob" required/>
+      </div>
+      <div class="ct-form-group">
+        <label class="ct-label">Jins <span class="required">*</span></label>
+        <select class="ct-select" id="patGender" required>
+          <option value="">— tanlang —</option>
+          <option value="Erkak">Erkak</option>
+          <option value="Ayol">Ayol</option>
+          <option value="Boshqa">Boshqa</option>
+        </select>
+      </div>
+    </div>
+    <div class="ct-form-row">
+      <div class="ct-form-group">
+        <label class="ct-label">Telefon</label>
+        <input type="tel" class="ct-input" id="patPhone" placeholder="+998 90 000 00 00"/>
+      </div>
+      <div class="ct-form-group">
+        <label class="ct-label">Email</label>
+        <input type="email" class="ct-input" id="patEmail" placeholder="bemor@mail.uz"/>
+      </div>
+    </div>
+    <div class="ct-form-group">
+      <label class="ct-label">Shifokor</label>
+      <select class="ct-select" id="patDoctor">
+        <option value="">— tanlang —</option>
+      </select>
+    </div>
+    <div class="ct-form-group">
+      <label class="ct-label">Manzil</label>
+      <input type="text" class="ct-input" id="patAddress" placeholder="Toshkent, Yunusobod…"/>
+    </div>
+  </div>
+  <div class="ct-drawer-footer">
+    <button class="ct-btn ct-btn-outline" onclick="closeDrawer('patDrawer')">Bekor qilish</button>
+    <button class="ct-btn ct-btn-primary" id="savePatBtn">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="width:14px;height:14px"><path d="M19 21H5a2 2 0 01-2-2V5a2 2 0 012-2h11l5 5v11a2 2 0 01-2 2z"/><polyline points="17 21 17 13 7 13 7 21"/><polyline points="7 3 7 8 15 8"/></svg>
+      Saqlash
+    </button>
+  </div>
+</div>
+
+<!-- Profile Drawer -->
+<div class="ct-drawer-overlay" id="profileDrawer-overlay"></div>
+<div class="ct-drawer" id="profileDrawer" style="width:580px">
+  <div class="ct-drawer-header">
+    <h2 class="ct-drawer-title" id="profileDrawerTitle">Bemor profili</h2>
+    <button class="ct-drawer-close" onclick="closeDrawer('profileDrawer')">✕</button>
+  </div>
+  <div class="ct-drawer-body" id="profileDrawerBody">
+    <div class="ct-loading-overlay"><div class="ct-spinner"></div></div>
+  </div>
+</div>
+
+<div id="ct-toasts" class="ct-toast-wrap"></div>
+<script src="/js/api.js"></script>
+<script src="/js/auth.js"></script>
+<script src="/js/layout.js"></script>
+<script src="/js/patients.js"></script>
+</body>
+</html>

@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="uz">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width,initial-scale=1"/>
+  <title>CareTrack CRM – Ro'yxatdan o'tish</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet"/>
+  <link rel="stylesheet" href="/css/style.css"/>
+  <style>
+    .ct-input { display: block; }
+    .ct-btn-full { width: 100%; justify-content: center; padding: 10px 16px; font-size: 14px; }
+    .ct-link { color: var(--ct-primary); font-weight: 500; }
+    .ct-link:hover { color: var(--ct-primary-dark); }
+    .ct-pwd-strength { height: 3px; border-radius: 2px; margin-top: 6px; transition: all .3s; }
+  </style>
+</head>
+<body>
+<div class="ct-auth-bg">
+  <div class="ct-auth-card">
+    <div class="ct-auth-header">
+      <div class="ct-auth-logo">🏥</div>
+      <h1 class="ct-auth-title">CareTrack CRM</h1>
+      <p class="ct-auth-subtitle">Yangi bemor ro'yxatdan o'tishi</p>
+    </div>
+    <div class="ct-auth-body">
+      <div id="alertBox"></div>
+      <form id="regForm" autocomplete="off">
+        <div class="ct-form-row">
+          <div class="ct-form-group">
+            <label class="ct-label">To'liq ism <span class="required">*</span></label>
+            <input type="text" class="ct-input" id="full_name" placeholder="Alisher Nazarov" required/>
+          </div>
+          <div class="ct-form-group">
+            <label class="ct-label">Telefon</label>
+            <input type="tel" class="ct-input" id="phone" placeholder="+998 90 000 00 00"/>
+          </div>
+        </div>
+        <div class="ct-form-group">
+          <label class="ct-label">Foydalanuvchi nomi <span class="required">*</span></label>
+          <input type="text" class="ct-input" id="username" placeholder="alisher_n" minlength="3" required/>
+          <div class="ct-form-hint">Kamida 3 ta belgi</div>
+        </div>
+        <div class="ct-form-group">
+          <label class="ct-label">Parol <span class="required">*</span></label>
+          <input type="password" class="ct-input" id="password" placeholder="••••••••" minlength="6" required/>
+          <div id="pwdStrength" class="ct-pwd-strength"></div>
+          <div class="ct-form-hint">Kamida 6 ta belgi</div>
+        </div>
+        <div class="ct-form-group">
+          <label class="ct-label">Parolni tasdiqlang <span class="required">*</span></label>
+          <input type="password" class="ct-input" id="password2" placeholder="••••••••" required/>
+          <div id="pwdMatch" class="ct-form-hint"></div>
+        </div>
+        <button type="submit" class="ct-btn ct-btn-success ct-btn-full" id="regBtn">
+          ✓ Ro'yxatdan o'tish
+        </button>
+      </form>
+      <p style="text-align:center;font-size:13px;color:var(--ct-gray-500);margin-top:16px">
+        Hisobingiz bormi? <a href="/login.html" class="ct-link">Kirish</a>
+      </p>
+    </div>
+  </div>
+</div>
+
+<script src="/js/api.js"></script>
+<script src="/js/auth.js"></script>
+<script src="/js/auth-forms.js"></script>
+<script>
+  // Password strength indicator
+  document.getElementById('password').addEventListener('input', function() {
+    const v = this.value;
+    const el = document.getElementById('pwdStrength');
+    if (!v) { el.style.background = ''; el.style.width = '0%'; return; }
+    let score = 0;
+    if (v.length >= 6)  score++;
+    if (v.length >= 10) score++;
+    if (/[A-Z]/.test(v)) score++;
+    if (/[0-9]/.test(v)) score++;
+    const colors = ['','#ef4444','#f59e0b','#22c55e','#16a34a'];
+    const widths  = ['0%','30%','55%','80%','100%'];
+    el.style.background = colors[score];
+    el.style.width = widths[score];
+  });
+
+  // Password match
+  document.getElementById('password2').addEventListener('input', function() {
+    const el = document.getElementById('pwdMatch');
+    const p1 = document.getElementById('password').value;
+    if (!this.value) { el.textContent = ''; return; }
+    if (p1 === this.value) { el.textContent = '✓ Parollar mos'; el.style.color = 'var(--ct-success)'; }
+    else { el.textContent = '✗ Parollar mos emas'; el.style.color = 'var(--ct-danger)'; }
+  });
+
+  document.getElementById('regForm').addEventListener('submit', async e => {
+    e.preventDefault();
+    const p1 = document.getElementById('password').value;
+    const p2 = document.getElementById('password2').value;
+    const ab = document.getElementById('alertBox');
+    ab.innerHTML = '';
+
+    if (p1 !== p2) {
+      ab.innerHTML = `<div class="ct-alert ct-alert-error" style="margin-bottom:14px">⚠️ Parollar mos kelmadi</div>`;
+      return;
+    }
+
+    const btn = document.getElementById('regBtn');
+    btn.disabled = true;
+    btn.innerHTML = '<div class="ct-spinner" style="width:16px;height:16px;display:inline-block"></div> Yuklanmoqda...';
+
+    try {
+      const data = await API.register({
+        full_name: document.getElementById('full_name').value,
+        username:  document.getElementById('username').value,
+        password:  p1,
+        phone:     document.getElementById('phone').value,
+      });
+      if (data.token) setAuthToken(data.token);
+      location = '/dashboard.html';
+    } catch(err) {
+      ab.innerHTML = `<div class="ct-alert ct-alert-error" style="margin-bottom:14px">⚠️ ${err.message}</div>`;
+      btn.disabled = false;
+      btn.innerHTML = "✓ Ro'yxatdan o'tish";
+    }
+  });
+</script>
+</body>
+</html>

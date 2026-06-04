@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="uz">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width,initial-scale=1"/>
+  <title>CareTrack CRM – Qabullar</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet"/>
+  <link rel="stylesheet" href="/css/style.css"/>
+</head>
+<body>
+<div id="ct-sidebar-overlay" class="ct-sidebar-overlay"></div>
+<div class="ct-shell">
+  <aside class="ct-sidebar" id="ct-sidebar"></aside>
+  <div class="ct-main" id="ct-main">
+    <header class="ct-topbar" id="ct-topbar"></header>
+    <main class="ct-page" id="ct-page">
+      <div class="ct-loading-overlay"><div class="ct-spinner"></div> Yuklanmoqda…</div>
+    </main>
+  </div>
+</div>
+
+<!-- Appointment Drawer -->
+<div class="ct-drawer-overlay" id="aptDrawer-overlay"></div>
+<div class="ct-drawer" id="aptDrawer">
+  <div class="ct-drawer-header">
+    <h2 class="ct-drawer-title">Qabul yozish</h2>
+    <button class="ct-drawer-close" onclick="closeDrawer('aptDrawer')">✕</button>
+  </div>
+  <div class="ct-drawer-body">
+    <div id="aptDrawerAlert"></div>
+
+    <!-- Patient name (for patient role) -->
+    <div class="ct-form-group" id="aptPatNameRow">
+      <label class="ct-label">Bemor ismi</label>
+      <input type="text" class="ct-input" id="aptPatName" readonly/>
+      <div class="ct-form-hint">Sizning ismingiz avtomatik o'rnatilgan</div>
+    </div>
+
+    <!-- Patient select (for admin/receptionist) -->
+    <div class="ct-form-group" id="aptPatSelectRow" style="display:none">
+      <label class="ct-label">Bemor <span class="required">*</span></label>
+      <select class="ct-select" id="aptPatient">
+        <option value="">— bemorni tanlang —</option>
+      </select>
+    </div>
+
+    <div class="ct-form-group">
+      <label class="ct-label">Shifokor <span class="required">*</span></label>
+      <select class="ct-select" id="aptDoctor" onchange="loadSlots()">
+        <option value="">— shifokorni tanlang —</option>
+      </select>
+    </div>
+    <div class="ct-form-group">
+      <label class="ct-label">Sana <span class="required">*</span></label>
+      <input type="date" class="ct-input" id="aptDate" onchange="loadSlots()"/>
+    </div>
+
+    <!-- Time slot picker -->
+    <div class="ct-form-group">
+      <label class="ct-label">Vaqt <span class="required">*</span></label>
+      <input type="hidden" id="aptTime"/>
+      <div id="slotsContainer" style="margin-top:8px">
+        <div style="font-size:13px;color:var(--ct-gray-400)">Avval shifokor va sanani tanlang</div>
+      </div>
+    </div>
+
+    <div class="ct-form-group">
+      <label class="ct-label">Izoh</label>
+      <textarea class="ct-textarea" id="aptNotes" placeholder="Muammo, sabab…"></textarea>
+    </div>
+  </div>
+  <div class="ct-drawer-footer">
+    <button class="ct-btn ct-btn-outline" onclick="closeDrawer('aptDrawer')">Bekor qilish</button>
+    <button class="ct-btn ct-btn-primary" id="saveAptBtn">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="width:14px;height:14px"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+      Qabul yozish
+    </button>
+  </div>
+</div>
+
+<div id="ct-toasts" class="ct-toast-wrap"></div>
+<script src="/js/api.js"></script>
+<script src="/js/auth.js"></script>
+<script src="/js/layout.js"></script>
+<script src="/js/appointments.js"></script>
+</body>
+</html>
