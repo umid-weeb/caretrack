@@ -1,3 +1,9 @@
+const DEFAULT_API_BASE_URL = 'https://caretrack-crm.onrender.com';
+if (typeof window !== 'undefined') {
+  window.API_BASE_URL = window.API_BASE_URL || DEFAULT_API_BASE_URL;
+  console.log('API_BASE_URL set to', window.API_BASE_URL);
+}
+
 function parseJwt(token) {
   try {
     const base64 = token.split('.')[1].replace(/-/g, '+').replace(/_/g, '/');
