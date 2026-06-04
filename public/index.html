@@ -2,8 +2,13 @@
 <html lang="uz">
 <head>
   <meta charset="UTF-8"/>
-  <meta http-equiv="refresh" content="0;url=/login.html"/>
+  <!-- Removed immediate meta refresh to avoid redirect loops on some hosts. -->
   <title>CareTrack CRM</title>
 </head>
-<body></body>
+</body>
+<script>
+  // Safe redirect to login: replace history entry and delay slightly to avoid tight loops
+  setTimeout(() => { try { window.location.replace('/login.html'); } catch (e) {} }, 250);
+</script>
+</html>
 </html>
